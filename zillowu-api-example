@@ -1,0 +1,26 @@
+# importing the requests library
+import requests
+  
+URL = "https://mortgageapi.zillow.com/getRates"
+PARAMS = {'partnerId':'RD-EXAMPLE', 'durationDays':30,}
+  
+# sending get request and saving the response as response object
+r = requests.get(url = URL, params = PARAMS)
+  
+# extracting data in json format
+data = r.json()
+  
+  
+# extracting historical mortgage rate data
+Fixed15Year = data['rates']['Fixed15Year']['query']
+Fixed30Year = data['rates']['Fixed30Year']['query']
+  
+# printing the output
+print("Fixed 15 Year Credit Score Bucket:%s\nFixed 30 Year Credit Score Bucket:%s"
+      %(Fixed15Year[creditScoreBucket], Fixed30Year[creditScoreBucket]))
+
+print("Fixed 15 Year Loan Amount Bucket:%s\nFixed 30 Year Loan Amount Bucket:%s"
+      %(Fixed15Year[loanAmountBucket], Fixed30Year[loanAmountBucket]))
+
+print("Fixed 15 Year loan-to-value Bucket:%s\nFixed 30 Year loan-to-value Bucket:%s"
+      %(Fixed15Year[loanToValueBucket], Fixed30Year[loanToValueBucket]))
